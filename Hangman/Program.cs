@@ -28,6 +28,8 @@ namespace Hangman {
         public static void PlayGame(List<string> phrases) {
             string phrase;
             phrase = SelectPhrase(phrases);
+            char[] phraseCharacters = GetPhraseCharacters(phrase);
+            HashSet<char> phraseDistinctCharacters = GetPhraseDistinctCharacters(phraseCharacters); 
         }
 
         public static char[] GetPhraseCharacters(string phrase) {
