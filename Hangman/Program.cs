@@ -36,6 +36,22 @@ namespace Hangman {
             return phraseArray;
         }
 
+        public static HashSet<char> GetPhraseDistinctCharacters (char[] phraseCharacters) {
+            HashSet<char> distinctChars = new HashSet<char>();
+            for (int count=0; count<phraseCharacters.Length; count++) {
+                if (phraseCharacters[count]==' ') {
+                    continue;
+                }
+                else if (distinctChars.Contains(phraseCharacters[count])) {
+                    continue;
+                }
+                else {
+                    distinctChars.Add(phraseCharacters[count]);
+                }
+            }
+            return distinctChars;
+        }
+
         static void Main(string[] args) {
 
             Console.WriteLine("Welcome to the Word Guess app!");
