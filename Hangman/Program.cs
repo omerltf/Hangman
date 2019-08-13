@@ -8,7 +8,7 @@ namespace Hangman {
     class Program {
 
         public static List<string> GetPhrases() {
-            List<string> phrasesList = new List<string> ();
+            List<string> phrasesList = new List<string>();
             phrasesList.Add("Harry Potter and the Prisoner of Azkaban");
             phrasesList.Add("There is no try");
             phrasesList.Add("Another One Bites the Dust");
@@ -28,6 +28,12 @@ namespace Hangman {
         public static void PlayGame(List<string> phrases) {
             string phrase;
             phrase = SelectPhrase(phrases);
+        }
+
+        public static char[] GetPhraseCharacters(string phrase) {
+            phrase = phrase.ToUpper();
+            char[] phraseArray = phrase.ToCharArray();
+            return phraseArray;
         }
 
         static void Main(string[] args) {
