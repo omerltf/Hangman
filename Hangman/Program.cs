@@ -38,6 +38,19 @@ namespace Hangman {
             return phraseArray;
         }
 
+        public static void DisplayPhrase (char[] phrase, List<char> phraseGuessedCharacters) {
+            //List<char> phraseGuessedCharacters = new List<char>();
+            for (int count=0; count<phrase.Length; count++) {
+                if (phrase[count]==' ' || phraseGuessedCharacters.Contains(phrase[count])) {
+                    Console.Write(phrase[count]);
+                }
+                else {
+                    Console.Write("*");
+                }
+               
+            }
+        }
+
         public static HashSet<char> GetPhraseDistinctCharacters (char[] phraseCharacters) {
             HashSet<char> distinctChars = new HashSet<char>();
             for (int count=0; count<phraseCharacters.Length; count++) {
