@@ -39,15 +39,6 @@ namespace Hangman {
                 phrasesList.Add("With great power comes great responsibility");
             }
 
-            /*If need be, input phrases manually
-             *                                                          
-            phrasesList.Add("Harry Potter and the Prisoner of Azkaban");
-            phrasesList.Add("There is no try");
-            phrasesList.Add("Another One Bites the Dust");
-            phrasesList.Add("May the Force be with you");
-            phrasesList.Add("You cant handle the truth");
-            phrasesList.Add("With great power comes great responsibility");*/
-
             return phrasesList;
         }
 
@@ -114,8 +105,7 @@ namespace Hangman {
         }
 
         public static void PlayGame(List<string> phrases) {
-            string phrase;
-            phrase = SelectPhrase(phrases);
+            string phrase = SelectPhrase (phrases);
             char[] phraseCharacters = GetPhraseCharacters(phrase);
             HashSet<char> phraseDistinctCharacters = GetPhraseDistinctCharacters(phraseCharacters);
             List<char> phraseGuessedCharacters = new List<char>();
