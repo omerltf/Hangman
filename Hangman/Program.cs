@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,33 @@ namespace Hangman {
 
         public static List<string> GetPhrases() {
             List<string> phrasesList = new List<string>();
-            phrasesList.Add("Harry Potter and the Prisoner of Azkaban");
-            phrasesList.Add("There is no try");
-            phrasesList.Add("Another One Bites the Dust");
-            phrasesList.Add("May the Force be with you");
-            phrasesList.Add("You cant handle the truth");
-            phrasesList.Add("With great power comes great responsibility");
+
+            /*reading phrases from .txt file*/
+            // Read the file and display it line by line.
+            try {
+                int count = 0;
+                string line;
+                var path = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "phrases.txt");
+                System.IO.StreamReader file = new System.IO.StreamReader(path);
+                while ((line = file.ReadLine()) != null) {
+                    phrasesList.Add(line);
+                    count++;
+                }
+                file.Close();
+                Console.WriteLine("Managed to successfully read {0} lines from file", count);
+                Console.ReadKey();
+            }
+            catch (FileNotFoundException) {
+                Console.WriteLine("File not found, using manual input");
+                Console.ReadKey();
+
+                phrasesList.Add("Harry Potter and the Prisoner of Azkaban");
+                phrasesList.Add("There is no try");
+                phrasesList.Add("Another One Bites the Dust");
+                phrasesList.Add("May the Force be with you");
+                phrasesList.Add("You cant handle the truth");
+                phrasesList.Add("With great power comes great responsibility");
+            }
 
             return phrasesList;
         }
@@ -83,8 +105,7 @@ namespace Hangman {
         }
 
         public static void PlayGame(List<string> phrases) {
-            string phrase;
-            phrase = SelectPhrase(phrases);
+            string phrase = SelectPhrase (phrases);
             char[] phraseCharacters = GetPhraseCharacters(phrase);
             HashSet<char> phraseDistinctCharacters = GetPhraseDistinctCharacters(phraseCharacters);
             List<char> phraseGuessedCharacters = new List<char>();
